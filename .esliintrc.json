@@ -1,0 +1,76 @@
+{
+    "env": {
+      "browser": true,
+      "node": true,
+      "es2020": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "plugins": ["@typescript-eslint", "react", "prettier"],
+    "extends": [
+      "airbnb",
+      "airbnb/hooks",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "prettier"
+    ],
+    "rules": {
+      "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+      "import/extensions": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "prettier/prettier": "error",
+      "react/no-unescaped-entities": "off",
+      "import/prefer-default-export": "off",
+      "import/no-cycle": [0, { "ignoreExternal": true }],
+      "prefer-const": "off",
+      "@typescript-eslint/no-inferrable-types": "off",
+      "@typescript-eslint/no-use-before-define": [
+        "error",
+        { "functions": false, "classes": false, "variables": true }
+      ],
+      "import/no-unresolved": 0,
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-props-no-spreading": ["error", { "custom": "ignore" }],
+      "import/newline-after-import": ["error", { "count": 1 }],
+      "camelcase": "error",
+      "spaced-comment": "error",
+      "react/jsx-boolean-value": "off",
+      "semi": ["error", "never"],
+      "no-duplicate-imports": "error",
+      "no-console": "warn",
+      "no-unused-vars": "off",
+      "no-plusplus": "off",
+      "@typescript-eslint/no-unused-vars": ["warn"],
+      "max-len": ["warn", { "code": 120 }],
+      "no-lonely-if": "off",
+      "react/prop-types": "error",
+      "no-param-reassign": 0,
+      "react/no-unstable-nested-components": ["off", { "allowAsProps": true }],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": false,
+          "optionalDependencies": false,
+          "peerDependencies": false
+        }
+      ]
+    },
+  
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx", ".png"],
+          "paths": ["src"]
+        }
+      }
+    }
+  }
