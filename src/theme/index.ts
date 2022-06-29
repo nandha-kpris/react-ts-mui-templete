@@ -6,17 +6,17 @@ import {
   PaletteOptions as MuiPaletteOptions,
   ThemeOptions,
   createTheme,
-} from '@mui/material/styles'
+} from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette extends MuiPalette {
-    almostBlack: {}
+    almostBlack: {};
   }
 
   // allow configuration using `createTheme`
   interface PaletteOptions {
-    almostBlack?: {}
-    breakpoints?: {}
+    almostBlack?: {};
+    breakpoints?: {};
   }
   // interface PalettePrimary {
   //   neutral: Palette['primary']
@@ -313,4 +313,4 @@ export const Theme = createTheme({
       lineHeight: 1.375,
     },
   },
-})
+});

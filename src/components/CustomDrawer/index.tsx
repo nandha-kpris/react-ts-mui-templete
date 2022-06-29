@@ -1,18 +1,25 @@
-import * as React from 'react'
+import * as React from 'react';
 import {
   Drawer as MuiDrawer,
   DrawerProps,
   IconButton,
   Divider,
-} from '@mui/material'
-import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles'
+  List,
+  Typography,
+  ListItemButton,
+  ListItemIcon,
+  Icon,
+} from '@mui/material';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import {
   ChevronRight as ChevronRightIcon,
   ChevronLeft as ChevronLeftIcon,
-} from '@mui/icons-material'
-import _ from 'lodash'
-import { Routes, Route, Link } from 'react-router-dom'
-import { drawerWidth } from '../../constants'
+} from '@mui/icons-material';
+import _ from 'lodash';
+import { Routes, Route, Link } from 'react-router-dom';
+import { drawerWidth } from '../../constants';
+import { drawerOptions } from '../../constants/drawer';
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -21,7 +28,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
-})
+});
 
 const closedMixin = (theme: Theme): CSSObject => ({
   transition: theme.transitions.create('width', {
@@ -33,56 +40,95 @@ const closedMixin = (theme: Theme): CSSObject => ({
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
-})
+});
 export const DrawerHeader = styled('div')(({ theme }) => ({
+  // display: 'flex',
+  // alignItems: 'center',
+  // justifyContent: 'flex-end',
+  // padding: theme.spacing(0, 1),
+  // // necessary for content to be below app bar
+  // ...theme.mixins.toolbar,
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
+  flexDirection: 'row',
+  color: 'white',
+  fontSize: '15px',
+  marginTop: '10px',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-}))
+}));
+export const Drawer = styled('div')(({ theme }) => ({
+  backgroundColor: '#181C32',
+  color: '#ffffff',
+  width: '190px',
+  height: '900px',
+  position: 'fixed',
+  zIndex: 1,
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+}));
+export const DrawerBody = styled('div')(({ theme }) => ({
+  // backgroundColor: 'white',
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+}));
+export const DrawerLabel = styled('div')(({ theme }) => ({
+  display: 'flex',
+  // padding: '10px',
+  color: 'white',
 
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: 'nowrap',
-  boxSizing: 'border-box',
-  ...(open && {
-    ...openedMixin(theme),
-    '& .MuiDrawer-paper': openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    '& .MuiDrawer-paper': closedMixin(theme),
-  }),
-}))
+  borderRadius: '10px',
+  fontSize: '20px',
+  ...theme.mixins.toolbar,
+}));
+// const Drawer = styled(MuiDrawer, {
+//   shouldForwardProp: (prop) => prop !== 'open',
+// })(({ theme, open }) => ({
+//   width: drawerWidth,
+//   flexShrink: 0,
+//   whiteSpace: 'nowrap',
+//   boxSizing: 'border-box',
+//   ...(open && {
+//     ...openedMixin(theme),
+//     '& .MuiDrawer-paper': openedMixin(theme),
+//   }),
+//   ...(!open && {
+//     ...closedMixin(theme),
+//     '& .MuiDrawer-paper': closedMixin(theme),
+//   }),
+// }));
 export interface IdrawerOptions {
-  label: string
-  path: string
-  icon?: string
+  label: string;
+  path: string;
+  icon?: string;
 }
 interface IProps extends DrawerProps {
-  options: IdrawerOptions[]
-  toggleDrawer: any
+  options: IdrawerOptions[];
+  toggleDrawer: any;
 }
 export default function CustomDrawer(props: IProps) {
-  const { options, open, toggleDrawer } = props
-  const theme = useTheme()
+  const { options } = props;
+  console.log('collectoption', options);
+  const theme = useTheme();
   return (
-    <Drawer variant="permanent" open={open}>
+    <Drawer>
       <DrawerHeader>
-        <IconButton onClick={toggleDrawer}>
-          {theme.direction === 'rtl' ? (
-            <ChevronRightIcon />
-          ) : (
-            <ChevronLeftIcon />
-          )}
-        </IconButton>
+        <Typography style={{ color: 'white' }}>Home</Typography>
       </DrawerHeader>
-      <Divider />
+      <DrawerBody>
+        {' '}
+        {_.map(options, ({ label, path, icon }: IdrawerOptions, idx: any) => (
+          <span key={idx}>
+            <Link to={path}>
+              <ListItemButton>
+                <DrawerLabel>
+                  {label}
+                  <ArrowForwardIosIcon />
+                </DrawerLabel>
+              </ListItemButton>
+            </Link>
+          </span>
+        ))}
+      </DrawerBody>
     </Drawer>
-  )
+  );
 }

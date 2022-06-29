@@ -1,15 +1,17 @@
-import { Menu as MenuIcon } from '@mui/icons-material'
+import { Menu as MenuIcon } from '@mui/icons-material';
 import {
   AppBar as MuiAppBar,
   Toolbar,
   AppBarProps as MuiAppBarProps,
   IconButton,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-import { drawerWidth } from '../../constants'
+  Box,
+  Typography,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { drawerWidth } from '../../constants';
 
 interface AppBarProps extends MuiAppBarProps {
-  open?: boolean
+  open?: boolean;
 }
 
 const AppBar = styled(MuiAppBar, {
@@ -28,31 +30,43 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
-}))
+}));
 interface INavProps {
-  handledrawerOpen: any
-  drawerState: any
+  handledrawerOpen: any;
+  drawerState: any;
 }
 export default function NavBar({ handledrawerOpen, drawerState }: INavProps) {
   return (
-    <AppBar open={drawerState}>
-      {' '}
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
+    <AppBar
+      open={drawerState}
+      style={{
+        width: '86vw',
+        backgroundColor: 'white',
+        borderBottom: '1px solid whitesmoke',
+        height: '80px',
+      }}
+    >
+      <Box style={{ textAlign: 'end' }}>
+        <Typography style={{ fontSize: '25px', color: 'black' }}>
+          Analytics Dashboard
+        </Typography>
+      </Box>
+      {/* <Toolbar> */}
+      {/* <IconButton
+          size='large'
+          edge='start'
+          color='inherit'
+          aria-label='menu'
           onClick={handledrawerOpen}
           sx={{ mr: 2 }}
         >
           <MenuIcon />
-        </IconButton>
-        {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        </IconButton> */}
+      {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           News
         </Typography>
         <Button color="inherit">Login</Button> */}
-      </Toolbar>
+      {/* </Toolbar> */}
     </AppBar>
-  )
+  );
 }
