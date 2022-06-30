@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -47,10 +48,16 @@ function Copyright(props: any) {
     </Typography>
   );
 }
+interface UserData {
+  username: string;
+  password: string;
+  prevState: null;
+}
 
 export default function SignIn() {
   let navigate = useNavigate();
-
+  // const [username, setUserName] = useState<string | undefined>();
+  // const [password, setPassword] = useState<string | undefined>();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -59,7 +66,7 @@ export default function SignIn() {
       password: data.get("password"),
     });
     setLocalStorageItem("authToken", "test").then(() => {
-      navigate("/");
+      navigate("/pages/home");
     });
   };
 
@@ -85,7 +92,7 @@ export default function SignIn() {
           noValidate
           sx={{ mt: 1, color: "#181C32" }}
         >
-          <CssTextField
+          {/* <CssTextField
             margin="normal"
             required
             fullWidth
@@ -94,8 +101,9 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-          />
-          {/* <TextField
+            onChange={(e) => setUserName(e.target.value)}
+          /> */}
+          <TextField
             margin="normal"
             required
             fullWidth
@@ -103,20 +111,20 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus 
-
-            // sx={{
-            //   "& .MuiInputLabel-root": { color: "#181C32" }, //styles the label
-            //   "& .MuiOutlinedInput-root": {
-            //     "& > fieldset": { borderColor: "#181C32" },
-            //   },
-            //   "& .MuiOutlinedInput-root.Mui-focused": {
-            //     "& > fieldset": {
-            //       borderColor: "#181C32",
-            //     },
-            //   },
-            // }}
-      /> */}
+            autoFocus
+            sx={{
+              "& .MuiInputLabel-root": { color: "#181C32" }, //styles the label
+              "& .MuiOutlinedInput-root": {
+                "& > fieldset": { borderColor: "#181C32" },
+              },
+              "& .MuiOutlinedInput-root.Mui-focused": {
+                "& > fieldset": {
+                  borderColor: "#181C32",
+                },
+              },
+            }}
+            // onChange={(e) => setUserName(e.target.value)}
+          />
           <CssTextField
             margin="normal"
             required
@@ -126,6 +134,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            // onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={
