@@ -1,14 +1,15 @@
-import { Box, CssBaseline } from '@mui/material';
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import CustomizedSnackbars from './components/AdvanceSnackbar';
-import CustomDrawer, { DrawerHeader } from './components/CustomDrawer';
-import NavBar from './components/NavBar';
-import { useAppDispatch, useAppSelector } from './hooks';
-import { openSnackbar, closeSnackbar } from './redux/features/snackBarSlice';
-import Home from './pages/home';
-import SignIn from './pages/login';
-import PrivateRoute from './components/AuthRoute';
+import { Box, CssBaseline } from "@mui/material";
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import CustomizedSnackbars from "./components/AdvanceSnackbar";
+import CustomDrawer, { DrawerHeader } from "./components/CustomDrawer";
+import NavBar from "./components/NavBar";
+import { useAppDispatch, useAppSelector } from "./hooks";
+import { openSnackbar, closeSnackbar } from "./redux/features/snackBarSlice";
+import Home from "./pages/home";
+import TablePage from "./pages/table";
+import SignIn from "./pages/login";
+import PrivateRoute from "./components/AuthRoute";
 
 function App() {
   const [drawerState, setDrawerState] = useState(false);
@@ -22,7 +23,7 @@ function App() {
   };
   return (
     <Routes>
-      <Route path='/login' element={<SignIn />} />
+      <Route path="/" element={<SignIn />} />
       {/* <Route
         path='/'
         element={
@@ -32,10 +33,18 @@ function App() {
         }
       /> */}
       <Route
-        path='/pages/home'
+        path="/pages/home"
         element={
           <PrivateRoute>
             <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/pages/table"
+        element={
+          <PrivateRoute>
+            <TablePage />
           </PrivateRoute>
         }
       />
