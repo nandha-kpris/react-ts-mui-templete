@@ -1,11 +1,11 @@
-import { Box, CssBaseline } from '@mui/material';
-import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { closeSnackbar } from '../../redux/features/snackBarSlice';
-import CustomizedSnackbars from '../AdvanceSnackbar';
-import { drawerOptions } from '../../constants/drawer';
-import CustomDrawer, { DrawerHeader } from '../CustomDrawer';
-import NavBar from '../NavBar';
+import { Box, CssBaseline } from "@mui/material";
+import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { closeSnackbar } from "../../redux/features/snackBarSlice";
+import CustomizedSnackbars from "../AdvanceSnackbar";
+import { drawerOptions } from "../../constants/drawer";
+import CustomDrawer, { DrawerHeader } from "../CustomDrawer";
+import NavBar from "../NavBar";
 
 export default function Layout({ children }: any) {
   const [drawerState, setDrawerState] = useState(false);
@@ -18,7 +18,7 @@ export default function Layout({ children }: any) {
     setDrawerState(!drawerState);
   };
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <NavBar handledrawerOpen={handledrawerOpen} drawerState={drawerState} />
       <CustomDrawer
@@ -26,7 +26,7 @@ export default function Layout({ children }: any) {
         toggleDrawer={toggleDrawer}
         open={drawerState}
       />
-      <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {children}
       </Box>

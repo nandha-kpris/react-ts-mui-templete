@@ -1,17 +1,17 @@
-import * as React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
-import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
-import Link from '@mui/material/Link'
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
-import { setLocalStorageItem } from '../../services/localStorage'
+import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { setLocalStorageItem } from "../../services/localStorage";
 
 function Copyright(props: any) {
   return (
@@ -21,41 +21,45 @@ function Copyright(props: any) {
       align="center"
       {...props}
     >
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
     </Typography>
-  )
+  );
 }
 
 export default function SignIn() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
-    setLocalStorageItem('authToken', 'test').then(() => {
-      navigate('/')
-    })
-  }
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+    setLocalStorageItem("authToken", "test").then(() => {
+      navigate("/");
+    });
+  };
+
+  const handleRegister = () => {
+    navigate("/pages/register");
+  };
 
   return (
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -101,7 +105,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" onClick={handleRegister}>
                 Don't have an account? Sign Up
               </Link>
             </Grid>
@@ -110,5 +114,5 @@ export default function SignIn() {
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
-  )
+  );
 }

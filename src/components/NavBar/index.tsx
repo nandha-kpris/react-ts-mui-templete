@@ -40,7 +40,7 @@ export default function NavBar({ handledrawerOpen, drawerState }: INavProps) {
     <AppBar
       open={drawerState}
       style={{
-        width: "85vw",
+        width: "84vw",
         backgroundColor: "white",
         borderBottom: "1px solid whitesmoke",
         height: "80px",

@@ -1,20 +1,14 @@
-import React from 'react';
-import { Typography } from '@mui/material';
+import React from "react";
+import { Typography } from "@mui/material";
 // import HomeTable from './homeTable';
-import SecondHomeTable from './secondTable';
-import Grid from '@mui/material/Grid';
-import BarChat from './BarChat';
+import SecondHomeTable from "./secondTable";
+import Grid from "@mui/material/Grid";
+import BarChat from "./BarChat";
 function Home() {
   return (
     <div>
-      <Typography
-        style={{
-          color: 'red',
-          fontSize: '25px',
-          marginLeft: '200px',
-        }}
-      >
-        <div style={{ width: '60%' }}>
+      <Typography>
+        <div style={{ width: "60%" }}>
           <BarChat />
         </div>
         <Grid container spacing={2}>
