@@ -44,8 +44,9 @@
 //   const auth=useAuth()
 import { Navigate, Outlet } from "react-router-dom";
 import { getLocalStorageItem } from "../../services/localStorage";
+
 const PrivateRoutes = () => {
-  let auth = { token: false };
+  let auth = { token: true };
   return auth.token ? <Outlet /> : <Navigate to="/login" />;
 };
 export default PrivateRoutes;
