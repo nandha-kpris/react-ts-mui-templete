@@ -56,7 +56,7 @@ interface UserData {
 
 export default function SignIn() {
   let navigate = useNavigate();
-  // const [username, setUserName] = useState<string | undefined>();
+  const [username, setUserName] = useState<string | undefined>();
   // const [password, setPassword] = useState<string | undefined>();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -92,7 +92,7 @@ export default function SignIn() {
           noValidate
           sx={{ mt: 1, color: "#181C32" }}
         >
-          {/* <CssTextField
+          <CssTextField
             margin="normal"
             required
             fullWidth
@@ -102,8 +102,8 @@ export default function SignIn() {
             autoComplete="email"
             autoFocus
             onChange={(e) => setUserName(e.target.value)}
-          /> */}
-          <TextField
+          />
+          {/* <TextField
             margin="normal"
             required
             fullWidth
@@ -124,7 +124,7 @@ export default function SignIn() {
               },
             }}
             // onChange={(e) => setUserName(e.target.value)}
-          />
+          /> */}
           <CssTextField
             margin="normal"
             required
