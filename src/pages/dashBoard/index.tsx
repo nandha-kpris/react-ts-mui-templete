@@ -12,7 +12,9 @@ function DashBoard() {
           marginLeft: '200px',
         }}
       >
-        <LineChart />
+        <div style={{ width: '500px', height: '500px' }}>
+          <LineChart />
+        </div>
       </div>
     </div>
   );
