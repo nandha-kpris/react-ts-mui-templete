@@ -38,33 +38,9 @@ function App() {
       <Route element={<PrivateRoutes />}>
         <Route path="/pages/home" element={<Home />} />
       </Route>
-      <Route element={<PrivateRoutes />}>
-        <Route path="/pages/dashBoard" element={<DashBoard />} />
-      </Route>
-      {/* <Route
-        path="/pages/home"
-        element={
-          <PrivateRoutes>
-            <Home />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path='/pages/dashBoard'
-        element={
-          <PrivateRoute>
-            <DashBoard />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path='/pages/table'
-        element={
-          <PrivateRoute>
-            <TablePage />
-          </PrivateRoute>
-        }
-      /> */}
+
+      <Route path="/pages/dashBoard" element={<DashBoard />} />
+      <Route path="/pages/table" element={<TablePage />} />
     </Routes>
   );
 }
