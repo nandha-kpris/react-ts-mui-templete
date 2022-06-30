@@ -112,7 +112,7 @@ export default function CustomDrawer(props: IProps) {
   return (
     <Drawer>
       <DrawerHeader>
-        <Typography style={{ color: 'white' }}>Home</Typography>
+        {/* <Typography style={{ color: 'white' }}>Home</Typography> */}
       </DrawerHeader>
       <DrawerBody>
         {' '}

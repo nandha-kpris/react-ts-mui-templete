@@ -9,6 +9,7 @@ import { openSnackbar, closeSnackbar } from './redux/features/snackBarSlice';
 import Home from './pages/home';
 import SignIn from './pages/login';
 import PrivateRoute from './components/AuthRoute';
+import DashBoard from './pages/dashBoard';
 
 function App() {
   const [drawerState, setDrawerState] = useState(false);
@@ -23,19 +24,27 @@ function App() {
   return (
     <Routes>
       <Route path='/login' element={<SignIn />} />
-      {/* <Route
+      <Route
         path='/'
         element={
           <PrivateRoute>
             <Home />
           </PrivateRoute>
         }
-      /> */}
+      />
       <Route
         path='/pages/home'
         element={
           <PrivateRoute>
             <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path='/pages/dashBoard'
+        element={
+          <PrivateRoute>
+            <DashBoard />
           </PrivateRoute>
         }
       />
