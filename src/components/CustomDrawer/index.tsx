@@ -17,7 +17,7 @@ import {
   ChevronLeft as ChevronLeftIcon,
 } from '@mui/icons-material';
 import _ from 'lodash';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { drawerWidth } from '../../constants';
 import { drawerOptions } from '../../constants/drawer';
 
@@ -111,21 +111,15 @@ export default function CustomDrawer(props: IProps) {
   const theme = useTheme();
   return (
     <Drawer>
-      <DrawerHeader>
-        <Typography style={{ color: 'white' }}>Home</Typography>
-      </DrawerHeader>
+      <DrawerHeader></DrawerHeader>
       <DrawerBody>
-        {' '}
         {_.map(options, ({ label, path, icon }: IdrawerOptions, idx: any) => (
           <span key={idx}>
-            <Link to={path}>
+            <NavLink to={path}>
               <ListItemButton>
-                <DrawerLabel>
-                  {label}
-                  <ArrowForwardIosIcon />
-                </DrawerLabel>
+                <DrawerLabel>{label}</DrawerLabel>
               </ListItemButton>
-            </Link>
+            </NavLink>
           </span>
         ))}
       </DrawerBody>

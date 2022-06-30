@@ -7,7 +7,10 @@ import NavBar from "./components/NavBar";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { openSnackbar, closeSnackbar } from "./redux/features/snackBarSlice";
 import Home from "./pages/home";
+import DashBoard from "./pages/dashBoard";
+import TablePage from "./pages/table";
 import SignIn from "./pages/login";
+import PrivateRoute from "./components/AuthRoute";
 import PrivateRoutes from "./components/AuthRoute";
 
 function App() {
@@ -35,13 +38,33 @@ function App() {
       <Route element={<PrivateRoutes />}>
         <Route path="/pages/home" element={<Home />} />
       </Route>
+      <Route element={<PrivateRoutes />}>
+        <Route path="/pages/dashBoard'" element={<DashBoard />} />
+      </Route>
       {/* <Route
         path="/pages/home"
         element={
           <PrivateRoutes>
             <Home />
-          </PrivateRoutes>
-        } */}
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path='/pages/dashBoard'
+        element={
+          <PrivateRoute>
+            <DashBoard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path='/pages/table'
+        element={
+          <PrivateRoute>
+            <TablePage />
+          </PrivateRoute>
+        }
+      /> */}
     </Routes>
   );
 }

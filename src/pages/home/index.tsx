@@ -1,19 +1,30 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-
+// import HomeTable from './homeTable';
+import SecondHomeTable from './secondTable';
+import Grid from '@mui/material/Grid';
+import BarChat from './BarChat';
 function Home() {
-  console.log('home page');
   return (
     <div>
       <Typography
         style={{
           color: 'red',
           fontSize: '25px',
-          marginLeft: '100px',
-          margin: '10px',
+          marginLeft: '200px',
         }}
       >
-        home
+        <div style={{ width: '60%' }}>
+          <BarChat />
+        </div>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            {/* <HomeTable /> */}
+          </Grid>
+          <Grid item xs={4}>
+            <SecondHomeTable />
+          </Grid>
+        </Grid>
       </Typography>
     </div>
   );
