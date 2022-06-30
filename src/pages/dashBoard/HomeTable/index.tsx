@@ -1,14 +1,14 @@
-import CustomGrid from "../../../components/CustomGrid";
-import { AgGridColumnProps } from "ag-grid-react";
+import CustomGrid from '../../../components/CustomGrid';
+import { AgGridColumnProps } from 'ag-grid-react';
 function HomeTable() {
   const columnDef = [
     {
-      headerName: "Page visits",
+      headerName: 'Page visits',
       children: [
-        { field: "PAGE NAME" },
-        { field: "VISITORS" },
-        { field: "UNIQUE USER" },
-        { field: "BOUNCE RATE" },
+        { field: 'PAGE NAME' },
+        { field: 'VISITORS' },
+        { field: 'UNIQUE USER' },
+        { field: 'BOUNCE RATE' },
       ],
     },
   ];
@@ -20,7 +20,7 @@ function HomeTable() {
         loading={false}
         disableClickSelectionRenderers={false}
         columnDefs={columnDef}
-        noDataTxt="No Datas..."
+        noDataTxt='No Datas...'
         //rowData={rowDatas}
         TableHeight={50}
       />

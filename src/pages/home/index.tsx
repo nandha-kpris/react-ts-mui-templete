@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import HomeTable from './homeTable';
+// import HomeTable from './homeTable';
 import SecondHomeTable from './secondTable';
 import Grid from '@mui/material/Grid';
 import BarChat from './BarChat';
@@ -19,7 +19,7 @@ function Home() {
         </div>
         <Grid container spacing={2}>
           <Grid item xs={8}>
-            <HomeTable />
+            {/* <HomeTable /> */}
           </Grid>
           <Grid item xs={4}>
             <SecondHomeTable />
