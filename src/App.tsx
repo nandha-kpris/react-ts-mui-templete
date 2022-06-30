@@ -39,7 +39,7 @@ function App() {
         <Route path="/pages/home" element={<Home />} />
       </Route>
       <Route element={<PrivateRoutes />}>
-        <Route path="/pages/dashBoard'" element={<DashBoard />} />
+        <Route path="/pages/dashBoard" element={<DashBoard />} />
       </Route>
       {/* <Route
         path="/pages/home"
