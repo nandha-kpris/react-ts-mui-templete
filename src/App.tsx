@@ -7,9 +7,10 @@ import NavBar from './components/NavBar';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { openSnackbar, closeSnackbar } from './redux/features/snackBarSlice';
 import Home from './pages/home';
+import DashBoard from './pages/dashBoard';
+import TablePage from './pages/table';
 import SignIn from './pages/login';
 import PrivateRoute from './components/AuthRoute';
-import DashBoard from './pages/dashBoard';
 
 function App() {
   const [drawerState, setDrawerState] = useState(false);
@@ -45,6 +46,14 @@ function App() {
         element={
           <PrivateRoute>
             <DashBoard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path='/pages/table'
+        element={
+          <PrivateRoute>
+            <TablePage />
           </PrivateRoute>
         }
       />
