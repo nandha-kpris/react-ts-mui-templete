@@ -6,7 +6,7 @@ ChartJS.register(CategoryScale, LinearScale, ...registerables);
 function BarChat() {
   const datas = [
     {
-      useGain: 500,
+      useGain: 1000,
     },
     {
       useGain: 3000,
@@ -17,12 +17,49 @@ function BarChat() {
     {
       useGain: 1000,
     },
+    {
+      useGain: 400,
+    },
+    {
+      useGain: 9000,
+    },
+    {
+      useGain: 2000,
+    },
+    {
+      useGain: 200,
+    },
+    {
+      useGain: 1000,
+    },
+    {
+      useGain: 200,
+    },
+    {
+      useGain: 7000,
+    },
+    {
+      useGain: 1000,
+    },
   ];
   const [useData, setUseData] = useState({
-    labels: ["Jan", "Feb", "Mar", "Apr"],
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
     datasets: [
       {
-        label: "BarChat",
+        label: "Closebi",
         data: datas.map((val: any) => val.useGain),
         backgroundColor: ["#9b51e0", "#8ed1fc", "#f78da7", "#fcb900"],
       },

@@ -14,8 +14,7 @@ function Home() {
           marginLeft: "200px",
         }}
       >
-        home
-        <div style={{ width: "50%" }}>
+        <div style={{ width: "60%" }}>
           <BarChat />
         </div>
         <Grid container spacing={2}>
