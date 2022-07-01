@@ -10,14 +10,35 @@ import {
   Box,
   Typography,
   Container,
+  styled,
 } from "@mui/material";
 import LockOpenSharpIcon from "@mui/icons-material/LockOpenSharp";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "#181C32",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#181C32",
+  },
+  "& .MuiOutlinedInput-root": {
+    "&:hover fieldset": {
+      borderColor: "#181C32",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#181C32",
+    },
+  },
+});
+
 function RegisterPage() {
   const navigate = useNavigate();
+  const emailRegex = RegExp(
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  );
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const formik = useFormik({
@@ -44,10 +65,13 @@ function RegisterPage() {
         .matches(phoneRegExp, "Phone number is not valid")
         .min(10, "to short")
         .max(10, "to long"),
-      email: Yup.string().max(8, "maximum 8 charactor").required("Required"),
-      password: Yup.string().max(8, "maximum 8 charactor").required("Required"),
+      email: Yup.string()
+        .max(8, "maximum 8 character")
+        .required("Required")
+        .matches(emailRegex, "Email is not valid"),
+      password: Yup.string().max(8, "maximum 8 character").required("Required"),
       confirmPassword: Yup.string()
-        .max(8, "maximum 8 charactor")
+        .max(8, "maximum 8 character")
         .required("Required"),
     }),
     onSubmit: (values) => {
@@ -65,7 +89,7 @@ function RegisterPage() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: "#181C32" }}>
             <LockOpenSharpIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -73,7 +97,7 @@ function RegisterPage() {
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <form onSubmit={formik.handleSubmit}>
-              <TextField
+              <CssTextField
                 margin="normal"
                 required
                 fullWidth
@@ -89,7 +113,7 @@ function RegisterPage() {
                 }
                 helperText={formik.touched.firstName && formik.errors.firstName}
               />
-              <TextField
+              <CssTextField
                 margin="normal"
                 required
                 fullWidth
@@ -104,7 +128,7 @@ function RegisterPage() {
                 }
                 helperText={formik.touched.lastName && formik.errors.lastName}
               />
-              <TextField
+              <CssTextField
                 margin="normal"
                 required
                 fullWidth
@@ -122,7 +146,7 @@ function RegisterPage() {
                   formik.touched.phoneNumber && formik.errors.phoneNumber
                 }
               />
-              <TextField
+              <CssTextField
                 margin="normal"
                 required
                 fullWidth
@@ -135,7 +159,7 @@ function RegisterPage() {
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
               />
-              <TextField
+              <CssTextField
                 margin="normal"
                 required
                 fullWidth
@@ -151,7 +175,7 @@ function RegisterPage() {
                 }
                 helperText={formik.touched.password && formik.errors.password}
               />
-              <TextField
+              <CssTextField
                 margin="normal"
                 required
                 fullWidth
@@ -172,14 +196,35 @@ function RegisterPage() {
                 }
               />
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={
+                  <Checkbox
+                    value="remember"
+                    sx={{
+                      "&.Mui-checked ": {
+                        color: "#181C32",
+                      },
+                    }}
+                  />
+                }
                 label="I accept the Terms of Use & Privacy Policy"
               />
             </form>
             <Button
               type="submit"
               fullWidth
-              sx={{ mt: 3, mb: 2, backgroundColor: "black" }}
+              variant="contained"
+              color="inherit"
+              sx={{
+                mt: 3,
+                mb: 2,
+                "&.MuiButton-colorInherit": {
+                  backgroundColor: "#212e73",
+                  color: "white",
+                },
+                "&:hover": {
+                  backgroundColor: "#181C32",
+                },
+              }}
             >
               Register Now
             </Button>
@@ -190,8 +235,8 @@ function RegisterPage() {
                   marginLeft: "80px",
                 }}
               >
-                <Link href="#" variant="body2">
-                  <Typography onClick={() => navigate("/")}>
+                <Link href="#" variant="body2" sx={{ color: "#181C32" }}>
+                  <Typography onClick={() => navigate("/login")}>
                     Already have an account ? Sign in
                   </Typography>
                 </Link>

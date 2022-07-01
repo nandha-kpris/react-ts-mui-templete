@@ -131,6 +131,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import styled from "@emotion/styled";
+// import { useFormik } from "formik";
+// import * as Yup from "yup";
+
 import { setLocalStorageItem } from "../../services/localStorage";
 
 const CssTextField = styled(TextField)({
@@ -138,7 +141,7 @@ const CssTextField = styled(TextField)({
     color: "#181C32",
   },
   "& .MuiInput-underline:after": {
-    borderBottomColor: "green",
+    borderBottomColor: "#181C32",
   },
   "& .MuiOutlinedInput-root": {
     "&:hover fieldset": {
@@ -167,18 +170,37 @@ function Copyright(props: any) {
   );
 }
 interface UserData {
-  username: string;
+  email: string;
   password: string;
   prevState: null;
 }
 
 export default function SignIn() {
   let navigate = useNavigate();
+  // const emailRegex = RegExp(
+  //   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  // );
+  // const formik = useFormik({
+  //   enableReinitialize: true,
+  //   initialValues: {
+  //     email: "",
+  //     password: "",
+  //   },
+  //   validationSchema: Yup.object().shape({
+  //     email: Yup.string()
+  //       .required("Required")
+  //       .matches(emailRegex, "Email is not valid"),
+  //     password: Yup.string().max(8, "maximum 8 charactor").required("Required"),
+  //   }),
+  //   onSubmit :
+  // });
   // const [username, setUserName] = useState<string | undefined>();
   // const [password, setPassword] = useState<string | undefined>();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    if (!data.get("email") || !data.get("password")) {
+    }
     console.log({
       email: data.get("email"),
       password: data.get("password"),
@@ -187,7 +209,9 @@ export default function SignIn() {
       navigate("/");
     });
   };
-
+  const handleRegister = () => {
+    navigate("/pages/register");
+  };
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -294,7 +318,12 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body1" sx={{ color: "#181C32" }}>
+              <Link
+                href="#"
+                variant="body1"
+                sx={{ color: "#181C32" }}
+                onClick={handleRegister}
+              >
                 Don't have an account? Sign Up
               </Link>
             </Grid>
