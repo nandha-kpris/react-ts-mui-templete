@@ -181,7 +181,8 @@ function RegisterPage() {
             <Button
               type="submit"
               fullWidth
-              sx={{ mt: 3, mb: 2, backgroundColor: "black" }}
+              sx={{ mt: 3, mb: 2 }}
+              variant="contained"
             >
               Register Now
             </Button>
