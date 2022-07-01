@@ -18,7 +18,7 @@ import * as Yup from "yup";
 
 function RegisterPage() {
   const navigate = useNavigate();
-  //phone number
+  //Phone number and Email Validation Regex
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
