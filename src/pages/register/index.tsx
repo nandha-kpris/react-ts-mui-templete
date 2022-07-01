@@ -69,7 +69,7 @@ function RegisterPage() {
         .max(8, "maximum 8 character")
         .required("Required")
         .matches(emailRegex, "Email is not valid"),
-      password: Yup.string().max(8, "maximum 8 character").required("Required"),
+      password: Yup.string().required("Required"),
       confirmPassword: Yup.string()
         .max(8, "maximum 8 character")
         .required("Required"),
