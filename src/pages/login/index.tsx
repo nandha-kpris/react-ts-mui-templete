@@ -177,23 +177,7 @@ interface UserData {
 
 export default function SignIn() {
   let navigate = useNavigate();
-  // const emailRegex = RegExp(
-  //   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-  // );
-  // const formik = useFormik({
-  //   enableReinitialize: true,
-  //   initialValues: {
-  //     email: "",
-  //     password: "",
-  //   },
-  //   validationSchema: Yup.object().shape({
-  //     email: Yup.string()
-  //       .required("Required")
-  //       .matches(emailRegex, "Email is not valid"),
-  //     password: Yup.string().max(8, "maximum 8 charactor").required("Required"),
-  //   }),
-  //   onSubmit :
-  // });
+
   // const [username, setUserName] = useState<string | undefined>();
   // const [password, setPassword] = useState<string | undefined>();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

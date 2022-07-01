@@ -16,7 +16,6 @@ import LockOpenSharpIcon from "@mui/icons-material/LockOpenSharp";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
     color: "#181C32",
@@ -34,13 +33,12 @@ const CssTextField = styled(TextField)({
   },
 });
 
-function RegisterPage() {
+const RegisterPage = () => {
   const navigate = useNavigate();
   const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
   );
-  const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  const phoneRegExp = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -66,18 +64,28 @@ function RegisterPage() {
         .min(10, "to short")
         .max(10, "to long"),
       email: Yup.string()
-        .max(8, "maximum 8 character")
         .required("Required")
         .matches(emailRegex, "Email is not valid"),
       password: Yup.string().required("Required"),
       confirmPassword: Yup.string()
         .max(8, "maximum 8 character")
-        .required("Required"),
+        .required("Required")
+        .when("password", {
+          is: (val: string | any[]) => (val && val.length > 0 ? true : false),
+          then: Yup.string().oneOf(
+            [Yup.ref("password")],
+            "Both password need to be the same"
+          ),
+        }),
     }),
-    onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
+
+    onSubmit: (values: any) => {
+      // alert(JSON.stringify(values, null, 2));
+      console.log("login data", JSON.stringify(values, null, 2));
+      formik.resetForm();
     },
   });
+  // console.log("formik data", formik.values);
   return (
     <div>
       <Container component="main" maxWidth="xs">
@@ -95,7 +103,7 @@ function RegisterPage() {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
+          <Box sx={{ mt: 1 }}>
             <form onSubmit={formik.handleSubmit}>
               <CssTextField
                 margin="normal"
@@ -108,6 +116,7 @@ function RegisterPage() {
                 autoFocus
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.firstName}
                 error={
                   formik.touched.firstName && Boolean(formik.errors.firstName)
                 }
@@ -123,6 +132,7 @@ function RegisterPage() {
                 autoComplete="lastName"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.lastName}
                 error={
                   formik.touched.lastName && Boolean(formik.errors.lastName)
                 }
@@ -138,6 +148,7 @@ function RegisterPage() {
                 autoComplete="phoneNumber"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.phoneNumber}
                 error={
                   formik.touched.phoneNumber &&
                   Boolean(formik.errors.phoneNumber)
@@ -156,6 +167,7 @@ function RegisterPage() {
                 autoComplete="email"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.email}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
               />
@@ -170,6 +182,7 @@ function RegisterPage() {
                 autoComplete="current-password"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.password}
                 error={
                   formik.touched.password && Boolean(formik.errors.password)
                 }
@@ -186,6 +199,7 @@ function RegisterPage() {
                 autoComplete="current-password"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                value={formik.values.confirmPassword}
                 error={
                   formik.touched.confirmPassword &&
                   Boolean(formik.errors.confirmPassword)
@@ -199,6 +213,7 @@ function RegisterPage() {
                 control={
                   <Checkbox
                     value="remember"
+                    name="remember"
                     sx={{
                       "&.Mui-checked ": {
                         color: "#181C32",
@@ -208,26 +223,27 @@ function RegisterPage() {
                 }
                 label="I accept the Terms of Use & Privacy Policy"
               />
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="inherit"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  "&.MuiButton-colorInherit": {
+                    backgroundColor: "#212e73",
+                    color: "white",
+                  },
+                  "&:hover": {
+                    backgroundColor: "#181C32",
+                  },
+                }}
+              >
+                Register Now
+              </Button>
             </form>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="inherit"
-              sx={{
-                mt: 3,
-                mb: 2,
-                "&.MuiButton-colorInherit": {
-                  backgroundColor: "#212e73",
-                  color: "white",
-                },
-                "&:hover": {
-                  backgroundColor: "#181C32",
-                },
-              }}
-            >
-              Register Now
-            </Button>
             <Grid container>
               <Grid
                 item
@@ -247,6 +263,12 @@ function RegisterPage() {
       </Container>
     </div>
   );
-}
+};
 
 export default RegisterPage;
+function setSubmitting(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
+function handleSubmit(values: any) {
+  throw new Error("Function not implemented.");
+}
