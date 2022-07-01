@@ -10,7 +10,8 @@ import Home from "./pages/home";
 import DashBoard from "./pages/dashBoard";
 import TablePage from "./pages/table";
 import SignIn from "./pages/login";
-import PrivateRoute from "./components/AuthRoute/PrivateRoute";
+import PrivateRoute from "./components/AuthRoute";
+// import PrivateRoute from "./components/AuthRoute/PrivateRoute";
 import RegisterPage from "./pages/register";
 import Layout from "./components/Layout";
 
@@ -28,13 +29,38 @@ function App() {
     <Routes>
       <Route index element={<SignIn />} />
       <Route path="/login" element={<SignIn />} />
-      {/* <Route path="/" element={<SignIn />} /> */}
+      <Route
+        path="/pages/home"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/pages/dashBoard"
+        element={
+          <PrivateRoute>
+            <DashBoard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/pages/table"
+        element={
+          <PrivateRoute>
+            <TablePage />
+          </PrivateRoute>
+        }
+      />
+      <Route path="/pages/register" element={<RegisterPage />} />
+      {/* <Route path="/" element={<SignIn />} />
       <Route path="/pages/register" element={<RegisterPage />} />
 
       <Route element={<PrivateRoute />}>
         <Route path="/pages/table" element={<TablePage />} />
         <Route path="/component/layout" element={<Layout />} />
-      </Route>
+      </Route> */}
     </Routes>
   );
 }

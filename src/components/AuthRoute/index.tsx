@@ -1,66 +1,113 @@
 // /* eslint-disable react/jsx-no-useless-fragment */
-// // import React, { useMemo } from 'react';
-// // import { Route, Navigate, RouteProps, useLocation } from 'react-router-dom';
-// // import _ from 'lodash';
-// // import Layout from '../Layout';
-// // // import { isLogin } from '../../utils'
-// // export const isLogin = () => {
-// //   if (localStorage.getItem('authToken')) {
-// //     return true;
-// //   }
-// //   return false;
+//  import React, { useMemo } from 'react';
+//  import { Route, Navigate, RouteProps, useLocation } from 'react-router-dom';
+//  import _ from 'lodash';
+//  import Layout from '../Layout';
+// import { isLogin } from '../../utils';
+
+//  export const isLogin = () => {
+//   if (localStorage.getItem('authToken')) {
+//     return true;
+//   }
+//   return false;
+// };
+
+// function PrivateRoute({ children }: { children: JSX.Element }) {
+//   let auth = isLogin();
+//   let location = useLocation();
+//   console.log('login', auth);
+//   if (!auth) {
+//     // Redirect them to the /login page, but save the current location they were
+//     // trying to go to when they were redirected. This allows us to send them
+//     // along to that page after they login, which is a nicer user experience
+//     // than dropping them off on the home page.
+//     return <Navigate to='/login' state={{ from: location }} replace />;
+//   }
+
+//   return <Layout> {children}</Layout>;
+// }
+// export default PrivateRoute;
+// // import { createContext, useContext, useMemo } from "react";
+// // import { useNavigate } from "react-router-dom";
+// // import { useLocalStorage } from "../../services/localStorage";
+
+// // const AuthContext = createContext(null);
+
+// // export const AuthProvider = ({ children: any }) => {
+// //   const [user, setUser] = useLocalStorage("user", null);
+// //   const navigate = useNavigate();
+
+// //   // call this function when you want to authenticate the user
+// //   const login = async (data: any) => {
+// //     setUser(data);
+// //     navigate("/profile");
+// //   };
+
+// //   // call this function to sign out logged in user
+// //   const logout = () => {
+// //     setUser(null);
+// //     navigate("/", { replace: true });
+// //   };
+
+// //   const value = useMemo(
+// //     () => ({
+// //       user,
+// //       login,
+// //       logout,
+// //     }),
+// //     [user]
+// //   );
+// //   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 // // };
 
-// // function PrivateRoute({ children }: { children: JSX.Element }) {
-// //   let auth = isLogin();
-// //   let location = useLocation();
-// //   console.log('login', auth);
-// //   if (!auth) {
-// //     // Redirect them to the /login page, but save the current location they were
-// //     // trying to go to when they were redirected. This allows us to send them
-// //     // along to that page after they login, which is a nicer user experience
-// //     // than dropping them off on the home page.
-// //     return <Navigate to='/login' state={{ from: location }} replace />;
-// //   }
+// // export const useAuth = () => {
+// //   return useContext(AuthContext);
+// // };
 
-// //   return <Layout> {children}</Layout>;
-// // }
-// // export default PrivateRoute;
-// import { createContext, useContext, useMemo } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useLocalStorage } from "../../services/localStorage";
+// // export {};
+/* eslint-disable react/jsx-no-useless-fragment */
+// import React, { useMemo } from 'react'
+// import { Route, Navigate, RouteProps, useLocation } from 'react-router-dom'
+// import _ from 'lodash'
+// import Layout from '../Layout'
+// // import { isLogin } from '../../utils'
+// export const isLogin = () => {
+//   if (localStorage.getItem('authToken')) {
+//     return true
+//   }
+//   return false
+// }
 
-// const AuthContext = createContext(null);
+// function PrivateRoute({ children }: { children: JSX.Element }) {
+//   let auth = isLogin()
+//   let location = useLocation()
+//   consol
 
-// export const AuthProvider = ({ children: any }) => {
-//   const [user, setUser] = useLocalStorage("user", null);
-//   const navigate = useNavigate();
+/* eslint-disable react/jsx-no-useless-fragment */
+import React, { useMemo } from "react";
+import { Route, Navigate, RouteProps, useLocation } from "react-router-dom";
+import _ from "lodash";
+import Layout from "../Layout";
+// import { isLogin } from '../../utils'
+export const isLogin = () => {
+  if (localStorage.getItem("authToken")) {
+    return true;
+  }
+  return false;
+};
 
-//   // call this function when you want to authenticate the user
-//   const login = async (data: any) => {
-//     setUser(data);
-//     navigate("/profile");
-//   };
+function PrivateRoute({ children }: { children: JSX.Element }) {
+  let auth = isLogin();
+  let location = useLocation();
+  console.log("login", auth);
+  if (!auth) {
+    // Redirect them to the /login page, but save the current location they were
+    // trying to go to when they were redirected. This allows us to send them
+    // along to that page after they login, which is a nicer user experience
+    // than dropping them off on the home page.
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 
-//   // call this function to sign out logged in user
-//   const logout = () => {
-//     setUser(null);
-//     navigate("/", { replace: true });
-//   };
-
-//   const value = useMemo(
-//     () => ({
-//       user,
-//       login,
-//       logout,
-//     }),
-//     [user]
-//   );
-//   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-// };
-
-// export const useAuth = () => {
-//   return useContext(AuthContext);
-// };
-
-export {};
+  return <Layout>{children}</Layout>;
+}
+export default PrivateRoute;
