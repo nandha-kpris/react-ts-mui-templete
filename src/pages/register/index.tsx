@@ -18,8 +18,10 @@ import * as Yup from "yup";
 
 function RegisterPage() {
   const navigate = useNavigate();
+  //phone number
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -31,24 +33,24 @@ function RegisterPage() {
       confirmPassword: "",
     },
     validationSchema: Yup.object().shape({
-      firstName: Yup.string()
-        .min(2, " Too Short!")
-        .max(50, "Too Long!")
-        .required("Required"),
-      lastName: Yup.string()
-        .min(2, " Too Short!")
-        .max(50, "Too Long!")
-        .required("Required"),
+      firstName: Yup.string().min(2, " Too Short!").required("Required"),
+      lastName: Yup.string().min(2, " Too Short!").required("Required"),
       phoneNumber: Yup.string()
         .required("required")
         .matches(phoneRegExp, "Phone number is not valid")
-        .min(10, "to short")
-        .max(10, "to long"),
-      email: Yup.string().max(8, "maximum 8 charactor").required("Required"),
-      password: Yup.string().max(8, "maximum 8 charactor").required("Required"),
-      confirmPassword: Yup.string()
-        .max(8, "maximum 8 charactor")
+        .min(10, "not valid")
+        .max(10, "not valid"),
+      email: Yup.string()
+        .matches(emailValid, "Email Id is not valid")
         .required("Required"),
+      password: Yup.string().max(8, "maximum 8 charactor").required("Required"),
+      confirmPassword: Yup.string().when("password", {
+        is: (val: any) => (val && val.length > 0 ? true : false),
+        then: Yup.string().oneOf(
+          [Yup.ref("password")],
+          "Both password need to be the same"
+        ),
+      }),
     }),
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
