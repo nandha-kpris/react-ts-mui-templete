@@ -10,8 +10,9 @@ import Home from "./pages/home";
 import DashBoard from "./pages/dashBoard";
 import TablePage from "./pages/table";
 import SignIn from "./pages/login";
-import PrivateRoute from "./components/AuthRoute";
+import PrivateRoute from "./components/AuthRoute/PrivateRoute";
 import RegisterPage from "./pages/register";
+import Layout from "./components/Layout";
 
 function App() {
   const [drawerState, setDrawerState] = useState(false);
@@ -25,25 +26,15 @@ function App() {
   };
   return (
     <Routes>
-      <Route path="/" element={<SignIn />} />
+      <Route index element={<SignIn />} />
+      <Route path="/login" element={<SignIn />} />
+      {/* <Route path="/" element={<SignIn />} /> */}
       <Route path="/pages/register" element={<RegisterPage />} />
 
-      <Route
-        path="/pages/dashBoard"
-        element={
-          <PrivateRoute>
-            <DashBoard />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/pages/table"
-        element={
-          <PrivateRoute>
-            <TablePage />
-          </PrivateRoute>
-        }
-      />
+      <Route element={<PrivateRoute />}>
+        <Route path="/pages/table" element={<TablePage />} />
+        <Route path="/component/layout" element={<Layout />} />
+      </Route>
     </Routes>
   );
 }
