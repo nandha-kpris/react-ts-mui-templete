@@ -40,14 +40,16 @@ export default function NavBar({ handledrawerOpen, drawerState }: INavProps) {
     <AppBar
       open={drawerState}
       style={{
-        width: "84vw",
+        width: "85%",
         backgroundColor: "white",
         borderBottom: "1px solid whitesmoke",
         height: "80px",
       }}
     >
       <Box style={{ textAlign: "end" }}>
-        <Typography style={{ fontSize: "25px", color: "black" }}>
+        <Typography
+          style={{ fontSize: "25px", color: "black", marginTop: "18px" }}
+        >
           Analytics Dashboard
         </Typography>
       </Box>
