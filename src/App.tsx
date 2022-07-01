@@ -6,7 +6,6 @@ import CustomDrawer, { DrawerHeader } from './components/CustomDrawer';
 import NavBar from './components/NavBar';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { openSnackbar, closeSnackbar } from './redux/features/snackBarSlice';
-import Home from './pages/home';
 import DashBoard from './pages/dashBoard';
 import TablePage from './pages/table';
 import SignIn from './pages/login';
@@ -29,18 +28,11 @@ function App() {
         path='/'
         element={
           <PrivateRoute>
-            <Home />
+            <DashBoard />
           </PrivateRoute>
         }
       />
-      <Route
-        path='/pages/home'
-        element={
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>
-        }
-      />
+
       <Route
         path='/pages/dashBoard'
         element={

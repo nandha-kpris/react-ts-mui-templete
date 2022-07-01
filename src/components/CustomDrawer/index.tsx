@@ -53,7 +53,7 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
   color: 'white',
   fontSize: '15px',
   marginTop: '10px',
-  padding: theme.spacing(0, 1),
+  // padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
 export const Drawer = styled('div')(({ theme }) => ({
@@ -63,22 +63,26 @@ export const Drawer = styled('div')(({ theme }) => ({
   height: '900px',
   position: 'fixed',
   zIndex: 1,
-  padding: theme.spacing(0, 1),
+  // padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
 export const DrawerBody = styled('div')(({ theme }) => ({
-  // backgroundColor: 'white',
-  padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
 export const DrawerLabel = styled('div')(({ theme }) => ({
   display: 'flex',
-  // padding: '10px',
   color: 'white',
-
-  borderRadius: '10px',
   fontSize: '20px',
-  ...theme.mixins.toolbar,
+  alignItems: 'center',
+  '&:hover': {
+    backgroundColor: 'white',
+    color: 'black',
+    display: 'flex',
+    alignItems: 'center',
+    width: '150px',
+    borderRadius: '5px',
+    height: '40px',
+  },
 }));
 // const Drawer = styled(MuiDrawer, {
 //   shouldForwardProp: (prop) => prop !== 'open',
@@ -111,7 +115,19 @@ export default function CustomDrawer(props: IProps) {
   const theme = useTheme();
   return (
     <Drawer>
-      <DrawerHeader></DrawerHeader>
+      <DrawerHeader>
+        <Typography
+          style={{
+            fontSize: '25px',
+            color: 'white',
+            marginLeft: '40px',
+            marginTop: '10px',
+          }}
+        >
+          CloseBi
+        </Typography>
+      </DrawerHeader>
+      <Divider />
       <DrawerBody>
         {_.map(options, ({ label, path, icon }: IdrawerOptions, idx: any) => (
           <span key={idx}>
