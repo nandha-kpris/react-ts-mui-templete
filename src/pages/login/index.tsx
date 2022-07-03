@@ -56,7 +56,7 @@ interface UserData {
 
 export default function SignIn() {
   let navigate = useNavigate();
-  const [username, setUserName] = useState<string | undefined>();
+  // const [username, setUserName] = useState<string | undefined>();
   // const [password, setPassword] = useState<string | undefined>();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -66,7 +66,7 @@ export default function SignIn() {
       password: data.get("password"),
     });
     setLocalStorageItem("authToken", "test").then(() => {
-      navigate("/pages/home");
+      navigate("/component/layout");
     });
   };
 
@@ -101,7 +101,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={(e) => setUserName(e.target.value)}
+            // onChange={(e) => setUserName(e.target.value)}
           />
           {/* <TextField
             margin="normal"
