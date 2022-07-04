@@ -1,4 +1,4 @@
-import { Box, CssBaseline } from '@mui/material';
+import { Box, CssBaseline, Grid } from '@mui/material';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { closeSnackbar } from '../../redux/features/snackBarSlice';
@@ -20,12 +20,18 @@ export default function Layout({ children }: any) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
+      {/* <Grid container>
+        <Grid item xs={8} sm={8} md={8} lg={8} xl={8} > */}
       <NavBar handledrawerOpen={handledrawerOpen} drawerState={drawerState} />
+      {/* </Grid> */}
+      {/* <Grid item item xs={4} sm={4} md={4} lg={4} xl={4}> */}
       <CustomDrawer
         options={drawerOptions}
         toggleDrawer={toggleDrawer}
         open={drawerState}
       />
+      {/* </Grid>
+      </Grid> */}
       <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {children}

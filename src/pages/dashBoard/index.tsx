@@ -17,18 +17,18 @@ function DashBoard() {
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={6} sm={12} md={12} lg={6}>
+          <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
             <LineChart />
           </Grid>
-          <Grid item xs={6} sm={12} md={12} lg={6}>
+          <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
             <BarChart />
           </Grid>
         </Grid>
         <Grid container spacing={2} style={{ marginTop: '20px' }}>
-          <Grid item xs={8} sm={12} md={12} lg={8}>
+          <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
             <HomeTable />
           </Grid>
-          <Grid item xs={4} sm={12} md={12} lg={4}>
+          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
             <SecondHomeTable />
           </Grid>
         </Grid>
