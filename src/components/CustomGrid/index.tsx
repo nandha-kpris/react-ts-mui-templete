@@ -1,31 +1,37 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef, useCallback, useEffect, useState, useMemo } from 'react'
-import ReactResizeDetector from 'react-resize-detector'
-import classnames from 'classnames'
-import _ from 'lodash'
-import { AgGridReact, AgGridReactProps } from 'ag-grid-react'
-import 'ag-grid-community/dist/styles/ag-grid.css'
-import 'ag-grid-community/dist/styles/ag-theme-material.css'
-import { Box, MenuItem, Pagination, Select } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import React, {
+  useRef,
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react';
+import ReactResizeDetector from 'react-resize-detector';
+import classnames from 'classnames';
+import _ from 'lodash';
+import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-material.css';
+import { Box, MenuItem, Pagination, Select } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
-const TABLE_HEADER_HEIGHT = 30
-const defaultPagination = [10, 20, 30, 40, 50]
+const TABLE_HEADER_HEIGHT = 30;
+const defaultPagination = [10, 20, 30, 40, 50];
 interface Iprops extends AgGridReactProps {
-  handleCellClick: any
-  loading: boolean
-  disableClickSelectionRenderers: boolean
-  noDataTxt: string
-  TableHeight: number
+  handleCellClick: any;
+  loading: boolean;
+  disableClickSelectionRenderers: boolean;
+  noDataTxt: string;
+  TableHeight: number;
   // eslint-disable-next-line react/require-default-props
-  pageginationCount?: number[]
+  pageginationCount?: number[];
 }
 const useStyles = makeStyles(
   (theme: {
-    typography: { pxToRem: (arg0: number) => any }
-    palette: { grey: any[]; common: { white: any } }
-    spacing: (arg0: number) => any
+    typography: { pxToRem: (arg0: number) => any };
+    palette: { grey: any[]; common: { white: any } };
+    spacing: (arg0: number) => any;
   }) => ({
     table: (props: any) => ({
       position: 'relative',
@@ -113,7 +119,7 @@ const useStyles = makeStyles(
       background: theme.palette.common.white,
     },
   })
-)
+);
 
 function CustomGrid(props: Iprops) {
   const {
@@ -129,70 +135,70 @@ function CustomGrid(props: Iprops) {
     children,
     pageginationCount,
     ...rest
-  } = props
+  } = props;
 
-  const gridOptions: any = useRef()
-  const gridref: any = useRef()
+  const gridOptions: any = useRef();
+  const gridref: any = useRef();
 
-  const [gridApi, setGridApi]: any = useState(null)
-  const [rowSize, setRowSize]: any = useState(10)
-  const [currentpage, setCurrentpage] = useState(0)
-  const [totalPageSize, setTotalPageSize]: any = useState(10)
+  const [gridApi, setGridApi]: any = useState(null);
+  const [rowSize, setRowSize]: any = useState(10);
+  const [currentpage, setCurrentpage] = useState(0);
+  const [totalPageSize, setTotalPageSize]: any = useState(10);
 
   const setOrUnsetResizeColsToFit = useCallback(
     (sizeColumns: any, columnApi: any) => {
-      const allColumnIds: any = []
+      const allColumnIds: any = [];
       columnApi.getAllColumns().forEach((column: any) => {
-        allColumnIds.push(column.getId())
-      })
-      if (!sizeColumns) columnApi.autoSizeAllColumns(allColumnIds, false)
+        allColumnIds.push(column.getId());
+      });
+      if (!sizeColumns) columnApi.autoSizeAllColumns(allColumnIds, false);
       else if (gridApi) {
-        gridApi.sizeColumnsToFit()
+        gridApi.sizeColumnsToFit();
       }
     },
     [gridApi]
-  )
+  );
 
   const onColumnResized = useCallback((params: any) => {
-    console.log(params)
-  }, [])
+    console.log(params);
+  }, []);
   const updateRowData = useCallback(
     (columnApi: any) => {
-      gridApi?.setRowData(rowData)
-      setOrUnsetResizeColsToFit(true, columnApi)
+      gridApi?.setRowData(rowData);
+      setOrUnsetResizeColsToFit(true, columnApi);
     },
     [setOrUnsetResizeColsToFit, gridApi, rowData]
-  )
+  );
 
   useEffect(() => {
     if (_.get(gridOptions, 'current.api')) {
-      updateRowData(gridOptions.current.columnApi)
+      updateRowData(gridOptions.current.columnApi);
     }
-  }, [rowData, updateRowData])
+  }, [rowData, updateRowData]);
 
-  const [currentWidth, setCurrentWidth] = useState(null)
+  const [currentWidth, setCurrentWidth] = useState(null);
 
   useEffect(() => {
     if (_.get(gridOptions, 'current.api')) {
-      const gridColApi = gridOptions.current.columnApi
-      gridApi.setColumnDefs(columnDefs)
-      gridApi.resetRowHeights()
+      const gridColApi = gridOptions.current.columnApi;
+      gridApi.setColumnDefs(columnDefs);
+      gridApi.resetRowHeights();
 
-      setOrUnsetResizeColsToFit(true, gridColApi)
+      setOrUnsetResizeColsToFit(true, gridColApi);
     }
-  }, [columnDefs, setOrUnsetResizeColsToFit, currentWidth, gridApi])
+  }, [columnDefs, setOrUnsetResizeColsToFit, currentWidth, gridApi]);
 
   const onResizeLayout = (width: any) => {
-    setCurrentWidth(width)
-  }
+    setCurrentWidth(width);
+  };
   const onGridReady = useCallback(
     (params: any) => {
-      gridOptions.current = params
-      setGridApi(params.api)
-      setOrUnsetResizeColsToFit(true, params.columnApi)
+      gridOptions.current = params;
+      setGridApi(params.api);
+      setOrUnsetResizeColsToFit(true, params.columnApi);
     },
     [setOrUnsetResizeColsToFit]
-  )
+  );
 
   const classes = useStyles({
     tableStyles: {
@@ -206,43 +212,43 @@ function CustomGrid(props: Iprops) {
       trackColor: 'rgba(255, 255, 255, 0)',
       thumbColor: 'rgba(213, 213, 220, 1)',
     },
-  })
+  });
 
   const onCellClicked = (e: any) => {
     if (!e.column.colDef.disableClickSelection) {
-      handleCellClick(e)
+      handleCellClick(e);
     } else {
-      e.api.gridOptionsWrapper.gridOptions.suppressRowClickSelection = false
+      e.api.gridOptionsWrapper.gridOptions.suppressRowClickSelection = false;
     }
-  }
+  };
   const onPageSizeChanged = (value: any) => {
-    gridref.current.api.paginationSetPageSize(Number(value))
-  }
+    gridref.current.api.paginationSetPageSize(Number(value));
+  };
 
   const gridStyle = useMemo(
     () => ({ height: `${TableHeight}vh`, width: '100%' }),
     [TableHeight]
-  )
+  );
   const onPaginationChanged = useCallback(() => {
-    console.log('onPaginationPageLoaded')
+    console.log('onPaginationPageLoaded');
     // Workaround for bug in events order
     if (gridref.current.api) {
-      setTotalPageSize(gridref.current.api.paginationGetTotalPages())
+      setTotalPageSize(gridref.current.api.paginationGetTotalPages());
       console.log(
         'current page',
         gridref.current.api.paginationGetCurrentPage()
-      )
+      );
     }
-  }, [])
+  }, []);
 
   const setPage = (event: any, page: number) => {
-    console.log('page', page)
-    setCurrentpage(page)
+    console.log('page', page);
+    setCurrentpage(page);
 
     if (gridref.current.api) {
-      gridref.current.api.paginationGoToPage(page - 1)
+      gridref.current.api.paginationGoToPage(page - 1);
     }
-  }
+  };
   return (
     <div className={classnames('ag-theme-material', classes.table)}>
       <Box style={gridStyle}>
@@ -288,11 +294,11 @@ function CustomGrid(props: Iprops) {
         >
           <Box sx={{ mr: 1 }}>size</Box>
           <Select
-            variant="standard"
+            variant='standard'
             value={rowSize}
             onChange={(e) => {
-              setRowSize(Number(e.target.value))
-              onPageSizeChanged(e.target.value)
+              setRowSize(Number(e.target.value));
+              onPageSizeChanged(e.target.value);
             }}
           >
             {_.map(pageginationCount || defaultPagination, (value, idx) => (
@@ -306,7 +312,7 @@ function CustomGrid(props: Iprops) {
           count={totalPageSize}
           page={currentpage}
           onChange={setPage}
-          shape="rounded"
+          shape='rounded'
         />
       </Box>
       {loading && (
@@ -316,7 +322,7 @@ function CustomGrid(props: Iprops) {
       )}
       <ReactResizeDetector handleWidth onResize={onResizeLayout} />
     </div>
-  )
+  );
 }
 
-export default CustomGrid
+export default CustomGrid;
