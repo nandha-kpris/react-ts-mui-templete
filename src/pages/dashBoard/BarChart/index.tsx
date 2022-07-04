@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS } from 'chart.js';
-import { CategoryScale, LinearScale, registerables } from 'chart.js';
+import React, { useState } from "react";
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js";
+import { CategoryScale, LinearScale, registerables } from "chart.js";
 ChartJS.register(CategoryScale, LinearScale, ...registerables);
 function BarChat() {
   const datas = [
@@ -44,24 +44,24 @@ function BarChat() {
   ];
   const [useData, setUseData] = useState({
     labels: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ],
     datasets: [
       {
-        label: 'Closebi',
+        label: "Closebi",
         data: datas.map((val: any) => val.useGain),
-        backgroundColor: ['#9b51e0', '#8ed1fc', '#f78da7', '#fcb900'],
+        backgroundColor: ["#9b51e0", "#8ed1fc", "#f78da7", "#fcb900"],
       },
     ],
   });
