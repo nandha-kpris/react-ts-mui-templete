@@ -131,8 +131,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import styled from "@emotion/styled";
-// import { useFormik } from "formik";
-// import * as Yup from "yup";
 
 import { setLocalStorageItem } from "../../services/localStorage";
 
@@ -169,28 +167,24 @@ function Copyright(props: any) {
     </Typography>
   );
 }
-interface UserData {
-  email: string;
-  password: string;
-  prevState: null;
-}
 
 export default function SignIn() {
   let navigate = useNavigate();
-
-  // const [username, setUserName] = useState<string | undefined>();
-  // const [password, setPassword] = useState<string | undefined>();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if (!data.get("email") || !data.get("password")) {
+    if (
+      (!data.get("email") || !data.get("password")) &&
+      !data.get("email") &&
+      !data.get("password")
+    ) {
     }
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
     setLocalStorageItem("authToken", "test").then(() => {
-      navigate("/");
+      navigate("/pages/home");
     });
   };
   const handleRegister = () => {
@@ -227,30 +221,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-            // onChange={(e) => setUserName(e.target.value)}
           />
-          {/* <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            sx={{
-              "& .MuiInputLabel-root": { color: "#181C32" }, //styles the label
-              "& .MuiOutlinedInput-root": {
-                "& > fieldset": { borderColor: "#181C32" },
-              },
-              "& .MuiOutlinedInput-root.Mui-focused": {
-                "& > fieldset": {
-                  borderColor: "#181C32",
-                },
-              },
-            }}
-            // onChange={(e) => setUserName(e.target.value)}
-          /> */}
+
           <CssTextField
             margin="normal"
             required
@@ -260,13 +232,11 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-            // onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={
               <Checkbox
                 value="remember"
-                // color="primary"
                 sx={{
                   "&.Mui-checked ": {
                     color: "#181C32",
