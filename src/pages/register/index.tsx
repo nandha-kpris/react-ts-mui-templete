@@ -50,33 +50,24 @@ const RegisterPage = () => {
       confirmPassword: "",
     },
     validationSchema: Yup.object().shape({
-      firstName: Yup.string()
-        .min(2, " Too Short!")
-        .max(50, "Too Long!")
-        .required("Required"),
-      lastName: Yup.string()
-        .min(2, " Too Short!")
-        .max(50, "Too Long!")
-        .required("Required"),
+      firstName: Yup.string().min(2, " Too Short!").required("Required"),
+      lastName: Yup.string().min(2, " Too Short!").required("Required"),
       phoneNumber: Yup.string()
         .required("required")
         .matches(phoneRegExp, "Phone number is not valid")
-        .min(10, "to short")
-        .max(10, "to long"),
+        .min(10, "not valid")
+        .max(10, "not valid"),
       email: Yup.string()
-        .required("Required")
-        .matches(emailRegex, "Email is not valid"),
-      password: Yup.string().required("Required"),
-      confirmPassword: Yup.string()
-        .max(8, "maximum 8 character")
-        .required("Required")
-        .when("password", {
-          is: (val: string | any[]) => (val && val.length > 0 ? true : false),
-          then: Yup.string().oneOf(
-            [Yup.ref("password")],
-            "Both password need to be the same"
-          ),
-        }),
+        .matches(emailRegex, "Email Id is not valid")
+        .required("Required"),
+      password: Yup.string().max(8, "maximum 8 charactor").required("Required"),
+      confirmPassword: Yup.string().when("password", {
+        is: (val: any) => (val && val.length > 0 ? true : false),
+        then: Yup.string().oneOf(
+          [Yup.ref("password")],
+          "Both password need to be the same"
+        ),
+      }),
     }),
 
     onSubmit: (values: any) => {
@@ -244,6 +235,14 @@ const RegisterPage = () => {
                 Register Now
               </Button>
             </form>
+            {/* <Button
+              type="submit"
+              fullWidth
+              sx={{ mt: 3, mb: 2 }}
+              variant="contained"
+            >
+              Register Now
+            </Button> */}
             <Grid container>
               <Grid
                 item

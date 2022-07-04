@@ -184,7 +184,7 @@ export default function SignIn() {
       password: data.get("password"),
     });
     setLocalStorageItem("authToken", "test").then(() => {
-      navigate("/pages/home");
+      navigate("/pages/dashBoard");
     });
   };
   const handleRegister = () => {

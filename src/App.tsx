@@ -6,7 +6,6 @@ import CustomDrawer, { DrawerHeader } from "./components/CustomDrawer";
 import NavBar from "./components/NavBar";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import { openSnackbar, closeSnackbar } from "./redux/features/snackBarSlice";
-import Home from "./pages/home";
 import DashBoard from "./pages/dashBoard";
 import TablePage from "./pages/table";
 import SignIn from "./pages/login";
@@ -29,14 +28,14 @@ function App() {
     <Routes>
       <Route index element={<SignIn />} />
       <Route path="/login" element={<SignIn />} />
-      <Route
+      {/* <Route
         path="/pages/home"
         element={
           <PrivateRoute>
             <Home />
           </PrivateRoute>
         }
-      />
+      /> */}
       <Route
         path="/pages/dashBoard"
         element={
@@ -54,13 +53,6 @@ function App() {
         }
       />
       <Route path="/pages/register" element={<RegisterPage />} />
-      {/* <Route path="/" element={<SignIn />} />
-      <Route path="/pages/register" element={<RegisterPage />} />
-
-      <Route element={<PrivateRoute />}>
-        <Route path="/pages/table" element={<TablePage />} />
-        <Route path="/component/layout" element={<Layout />} />
-      </Route> */}
     </Routes>
   );
 }

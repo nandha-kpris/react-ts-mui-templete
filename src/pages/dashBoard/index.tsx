@@ -11,7 +11,7 @@ function DashBoard() {
       style={{
         color: "red",
         fontSize: "25px",
-        marginLeft: "200px",
+        marginLeft: "210px",
       }}
     >
       <Grid container spacing={2}>
@@ -22,7 +22,7 @@ function DashBoard() {
           <BarChart />
         </Grid>
       </Grid>
-      <Grid container spacing={2} style={{ marginTop: "20px" }}>
+      <Grid container spacing={2}>
         <Grid item xs={8}>
           <HomeTable />
         </Grid>
